@@ -1,3 +1,20 @@
+if ("scrollRestoration" in history) {
+  history.scrollRestoration = "manual";
+}
+
+const resetInitialScroll = () => {
+  if (window.location.hash) {
+    const target = document.getElementById(decodeURIComponent(window.location.hash.slice(1)));
+    target?.scrollIntoView();
+    return;
+  }
+
+  window.scrollTo(0, 0);
+};
+
+resetInitialScroll();
+window.addEventListener("pageshow", resetInitialScroll);
+
 const header = document.querySelector(".site-header");
 const hero = document.querySelector(".hero");
 const marquee = document.querySelector(".marquee-track");
